@@ -1,0 +1,68 @@
+.InnerContainer {
+  background-color: azure;
+  width: 80%;
+  margin: 50px auto;
+  padding: 0.5em 1.5em;
+}
+
+.productsFormItems {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.productsFormInputsError {
+  outline: 2px solid red;
+}
+
+.productRegisteringAlertText {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.productRegisteringDivision {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.productRegisteringDivisionText {
+  font-weight: 900;
+}
+
+@media screen and (max-width: 1000px) {
+  .InnerContainer {
+    margin: 40px auto;
+    padding: 0.4em 1.3em;
+  }
+
+  .productsFormItems {
+    width: 50%;
+    margin: 40px 0;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .productsFormItems {
+    margin: 30px 0;
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .productsFormItems {
+    margin: 20px 0;
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .productsFormItems {
+    margin: 10px 0;
+    font-size: 0.3em;
+  }
+}
