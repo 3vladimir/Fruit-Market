@@ -1,0 +1,84 @@
+.input {
+  width: 45%;
+  padding: 1em;
+  direction: ltr;
+}
+
+.select {
+  width: 50%;
+  border-radius: 5px;
+  padding: 1em;
+  font-family: inherit;
+  background-color: white;
+}
+
+.buttonText {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 1000px) {
+  .buttonText {
+    font-size: 0.8em;
+  }
+  .input {
+    padding: 0.8em;
+    font-size: 0.8em;
+  }
+  .input::placeholder {
+    font-size: 0.7em;
+  }
+
+  .select {
+    padding: 0.8em;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .buttonText {
+    font-size: 0.7em;
+  }
+
+  .input {
+    padding: 0.7em;
+    font-size: 0.7em;
+  }
+
+  .input::placeholder {
+    font-size: 0.6em;
+  }
+
+  .select {
+    padding: 0.7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .buttonText {
+    font-size: 0.6em;
+  }
+
+  .input {
+    padding: 0.6em;
+    font-size: 0.6em;
+  }
+
+  .input::placeholder {
+    font-size: 0.5em;
+  }
+
+  .select {
+    padding: 0.6em;
+    border-radius: 2px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttonText {
+    font-size: 0.4em;
+  }
+
+  .select {
+    font-size: 0.8em;
+  }
+}

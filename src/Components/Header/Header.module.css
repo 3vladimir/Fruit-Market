@@ -1,0 +1,282 @@
+.headerOuterContainer {
+  background: radial-gradient(
+    circle,
+    rgba(0, 1, 36, 0.6279645647321428) 0%,
+    rgba(9, 26, 121, 0.8800654050682774) 46%,
+    rgba(0, 255, 231, 0.7176004190738796) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(0, 7, 36, 0.8744631641719187) 0%,
+    rgba(9, 26, 121, 0.8800654050682774) 25%,
+    rgba(0, 255, 231, 0.8688609232755602) 100%
+  );
+}
+
+.headerInnerContainer {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.headerNavItemsContainer {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  text-align: center;
+  margin: 0;
+  color: fuchsia;
+  font-size: 3em;
+  font-weight: 700;
+}
+
+.headerButtonText {
+  font-size: 1em;
+}
+
+.headerButtonIcons {
+  margin-right: 5px;
+  font-size: 1.5em;
+}
+
+/* shopping cart */
+.shoppingCartListInnerContainer {
+  width: 20%;
+  position: absolute;
+  background-color: cornsilk;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.shoppingCartIsEmptyText {
+  text-align: center;
+  color: brown;
+  font-size: 1.2em;
+}
+
+.shoppingCacrtList li {
+  margin: 10px 15px;
+}
+
+.shopiingCartItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* media query */
+
+@media screen and (max-width: 1000px) {
+  .headerInnerContainer {
+    padding: 15px 0;
+  }
+  .headerTitle {
+    font-size: 2.5em;
+  }
+
+  .headerButtonText {
+    font-size: 0.8em;
+  }
+
+  .headerButtonIcons {
+    margin-right: 4px;
+    font-size: 1.3em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.9em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.7em;
+    margin: 10px 10px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .headerTitle {
+    font-size: 2.3em;
+  }
+
+  .headerButtonText {
+    font-size: 0.7em;
+  }
+
+  .headerButtonIcons {
+    margin-right: 4px;
+    font-size: 1.2em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.8em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.6em;
+    margin: 10px 10px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .headerInnerContainer {
+    padding: 13px 0;
+  }
+
+  .headerTitle {
+    font-size: 2em;
+  }
+
+  .headerButtonText {
+    font-size: 0.6em;
+  }
+
+  .headerButtonIcons {
+    margin-right: 3px;
+    font-size: 1em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.7em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.5em;
+    margin: 8px 8px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .headerInnerContainer {
+    padding: 11px 0;
+  }
+
+  .headerTitle {
+    font-size: 1.8em;
+  }
+
+  .headerButtonIcons {
+    margin-right: 2px;
+    font-size: 0.6em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.6em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.4em;
+    margin: 6px 6px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.4em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .headerInnerContainer {
+    padding: 9px 0;
+  }
+
+  .headerTitle {
+    font-size: 1.6em;
+  }
+
+  .headerNavItemsContainer {
+    width: 25%;
+  }
+
+  .headerButtonIcons {
+    font-size: 0.5em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.5em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.3em;
+    margin: 4px 4px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.3em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .headerTitle {
+    font-size: 1.3em;
+  }
+
+  .headerButtonText {
+    font-size: 0.5em;
+  }
+
+  .headerButtonIcons {
+    margin-right: 1px;
+    font-size: 0.4em;
+  }
+
+  .shoppingCartListInnerContainer {
+    top: 25px;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.4em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.3em;
+    margin: 3px 3px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.3em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .headerInnerContainer {
+    width: 95%;
+  }
+  .headerTitle {
+    font-size: 1em;
+  }
+
+  .headerButtonText {
+    font-size: 0.4em;
+  }
+
+  .headerButtonIcons {
+    font-size: 0.3em;
+  }
+
+  .shoppingCartIsEmptyText {
+    font-size: 0.3em;
+  }
+
+  .shoppingCacrtList li {
+    font-size: 0.2em;
+    margin: 2px 2px;
+  }
+
+  .shopiingCartItemsButtonText {
+    font-size: 0.2em;
+  }
+}

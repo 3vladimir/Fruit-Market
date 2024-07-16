@@ -1,0 +1,28 @@
+.checkIcon {
+  color: green;
+  font-size: 3em;
+}
+
+@media screen and (max-width: 1000px) {
+  .checkIcon {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .checkIcon {
+    font-size: 2.3em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .checkIcon {
+    font-size: 2.1em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .checkIcon {
+    font-size: 1.8em;
+  }
+}
