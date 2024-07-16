@@ -4,23 +4,23 @@ A website for buying and selling three kinds of fruits.
 
 ## pages
 
-### 'Home-page'
+### `Home-page`
 
 introdution of website.you can choose to be a buyer,or a seller.
 
-### 'purchse-page'
+### `purchse-page`
 
 you can see three kinds of fruits including banana,orange,and apple.
 each one has different prices and inventories.
 by the links in header,you can check the shopping cart and go to the Home page.
 
-### 'Registering-page'
+### `Registering-page`
 
 you can buy your product as much as you want.
 you can't buy more than inventory.
 after submitting your progress,your product will add to shopping cart and you will back into purchase-page
 
-### 'Sale-page'
+### `Sale-page`
 
 you can take your product for sale.
 you can choose your own price for your product.
