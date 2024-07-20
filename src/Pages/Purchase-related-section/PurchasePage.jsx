@@ -44,6 +44,7 @@ function Main() {
         <ul className={styles.productsItemsList}>
           {productsInformations.map((item) => {
             if (item.name === productName) {
+              // مطابق با محصول تعیین شده،آیتم ها را یکی یکی بنویس
               setProductErrorOFRunOut(false);
 
               return (

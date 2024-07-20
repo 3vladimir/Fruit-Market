@@ -24,6 +24,7 @@ import findProductFarsiName from "../../../Functions/findProductFarsiName";
 
 function Main() {
   function DialogOfDemandMoreThanSupplyComponent() {
+    // هرگاه تعداد درخواستی برای محصول بیشتر از موجودی انبار باشد،این قسمت نمایش داده میشود
     return (
       <>
         <Dialog
@@ -56,6 +57,7 @@ function Main() {
   }
 
   function DialogOfSuccessRegisterComponent() {
+    // زمانی که خرید محصول با موفقیت انجام شد،این بخش نمایش داده میشود
     const [moment, setMoment] = React.useState(3);
 
     function startTime() {
@@ -125,17 +127,11 @@ function Main() {
     setDialogOfDemandMoreThanSupply(false);
   };
 
-  const productID = location.hash.substring(1);
-
   const productsInformations = useSelector((state) => state.products.value);
-  React.useEffect(() => {
-    localStorage.setItem(
-      "productsInformations",
-      JSON.stringify(productsInformations)
-    );
-  }, [productsInformations]);
-
   const dispatch = useDispatch();
+
+  const productID = location.hash.substring(1);
+  // برای فهمیدن محصول فعلی،از آدرس صفحه استفاده میکنیم که مطابق با آیدی هر محصول است
 
   const [product, setProduct] = React.useState(
     productsInformations.find(function (item, index) {
@@ -143,13 +139,8 @@ function Main() {
     })
   );
 
-  let shoppingCartInformations = [];
-  const probablyShoppingCartInformations = window.localStorage.getItem(
-    "shoppingCartInformations"
-  );
-  if (probablyShoppingCartInformations) {
-    shoppingCartInformations = JSON.parse(probablyShoppingCartInformations);
-  }
+  const shoppingCartInformations =
+    JSON.parse(localStorage.getItem("shoppingCartInformations")) || [];
 
   const productFarsiName = findProductFarsiName(product.name);
   const productNumberInputRef = React.useRef(0);
@@ -160,6 +151,7 @@ function Main() {
   const [submitButtonOn, setSubmitButtonOn] = React.useState(false);
 
   function productRegisteringTextWrite() {
+    // اطلاعات مربوط به محصول در حال خرید را آپدیت میکند
     return `خرید ${productNumberInputRef.current.value} 
     عدد ${productFarsiName} به قیمت ${
       productNumberInputRef.current.value * product.price
@@ -167,6 +159,7 @@ function Main() {
   }
 
   function productNumberInputHandle() {
+    // مربوط به قسمت تعداد محصول
     setAlertOfInvalidInputs(true);
     const inputValue = productNumberInputRef.current.value;
     const isProductChooseNumberInputCorrect = /[1-9]/;
@@ -189,14 +182,16 @@ function Main() {
   }
 
   function wait3SeconsAndGoToTheLastPage() {
+    // زمانی که عملیات خرید با موفقیت ثبت شد،به صفحه خرید برگرد
     setTimeout(function () {
       location.assign("../Purchase-page");
     }, 3200);
   }
 
-  function productRegisteringSubmitButtonHandle() {
+  function productRegisteringSubmitHandle() {
     const productNumberInputValue = productNumberInputRef.current.value;
     if (productNumberInputValue > product.number) {
+      // یعنی تعداد درخواستی بیشتر از موجودی است
       dialogOFDemandMoreThanSupplyHandleClickOpen();
     } else {
       function showDialogOfSuccesRegister() {
@@ -254,7 +249,7 @@ function Main() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    productRegisteringSubmitButtonHandle();
+    productRegisteringSubmitHandle();
   }
   return (
     <>
@@ -283,9 +278,11 @@ function Main() {
                     className={styles.productNumberInput}
                     ref={productNumberInputRef}
                     placeholder="1,2,3,..."
-                    onInput={productNumberInputHandle}
+                    required
+                    onChange={productNumberInputHandle}
                   />
                   {alertOfInvalidInputs && (
+                    // زمانی که اطلاعات وارده شامل چیزی غیر از اعداد طبیعی باشد،این قسمت نمایش داده میشود
                     <div className={styles.alertOfInvalidInputs}>
                       امکان پذیر نمی باشد
                       <RiErrorWarningLine

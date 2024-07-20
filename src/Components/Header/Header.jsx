@@ -112,6 +112,7 @@ function Header({ pageTitle }) {
                           }
 
                           const newShoppingCartInformations = [
+                            // از یک آرایه کمکی استفاده میکنیم
                             ...shoppingCartInformations,
                           ];
                           newShoppingCartInformations.splice(

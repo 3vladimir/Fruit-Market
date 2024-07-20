@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import HomePage from "./pages/Home-page/HomePage";
-import SalePage from "./pages/Sales-related-section/SalePage";
-import PurchasePage from "./pages/Purchase-related-section/PurchasePage";
-import RegisterPage from "./pages/Purchase-related-section/Final-register-of-the-purhcase/RegisterPage";
+import HomePage from "./Pages/Home-page/HomePage";
+import SalePage from "././Pages/Sales-related-section/SalePage";
+import PurchasePage from "./Pages/Purchase-related-section/PurchasePage";
+import RegisterPage from "./Pages/Purchase-related-section/Final-register-of-the-purhcase/RegisterPage";
 function App() {
   return (
     <>

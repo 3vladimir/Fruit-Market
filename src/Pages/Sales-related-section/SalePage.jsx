@@ -2,6 +2,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addProduct,
+  increaseProductNumber,
+} from "../../Redux/actions/productActions";
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
 import Header from "../../Components/Header/Header";
@@ -26,11 +31,13 @@ function Main() {
   const productPriceInputRef = React.useRef(0);
   const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
     React.useState(false);
+
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
   function DialogOfSuccesRegisterComponnent() {
+    //زمانی که محصول برای فروش قرار داده میشود،این بخش نمایش داده میشود
     return (
       <>
         <Dialog
@@ -69,6 +76,7 @@ function Main() {
   };
 
   function productRegisteringTextWrite() {
+    // اطلاعات مربوط به محصول در حال فروش را آپدیت میکند
     const productChoosedNumber = productNumberInputRef.current.value || 0;
     const productChoosedPrice = productPriceInputRef.current.value || 0;
     const productFarsiName = productsSelectRef.current
@@ -87,6 +95,7 @@ function Main() {
   });
 
   function productNumberInputHandle() {
+    // مربوط به قسمت تعداد محصول
     const inputValue = productNumberInputRef.current.value;
     const isProductChooseNumberInputCorrect = /[1-9]/;
 
@@ -105,6 +114,7 @@ function Main() {
   }
 
   function productPriceInputHandle() {
+    // مربوط به قسمت قیمت محصول
     const inputValue = productPriceInputRef.current.value;
     const isProductChooseNumberInputCorrect = /[1-9]/;
 
@@ -121,21 +131,25 @@ function Main() {
       productPriceInputRef.current.value = "";
     }
   }
+
   function handleSelectChange() {
+    // مربوط به قسمت نوع محصول
     productRegisteringDivisionTextRef.current.textContent =
       productRegisteringTextWrite();
   }
 
   function wait2SeconsAndGoToTheLastPage() {
+    // زمانی که فروش محصول تایید شد،به صفحه اصلی سایت برمیگردد
     setTimeout(function () {
       location.assign("/");
     }, 2000);
   }
 
-  const productsInformations =
-    JSON.parse(localStorage.getItem("productsInformations")) || [];
+  const productsInformations = useSelector((state) => state.products.value);
+  const dispatch = useDispatch();
 
-  function changeLocalStorage() {
+  function changeProductsInformations() {
+    // محصولی که برای فروش قرار داده شده را به لیست محصولات اضافه کن
     let productWasAlreadyExist = false;
     productsInformations.forEach((item, index) => {
       if (item.name === productsSelectRef.current.value) {
@@ -145,11 +159,7 @@ function Main() {
             productsInformations[index].number +
             parseInt(productNumberInputRef.current.value);
 
-          productsInformations[index].number = productNewNumber;
-          window.localStorage.setItem(
-            "productsInformations",
-            JSON.stringify(productsInformations)
-          );
+          dispatch(increaseProductNumber(item.id, productNewNumber));
         }
       }
     });
@@ -160,19 +170,14 @@ function Main() {
         number: parseInt(productNumberInputRef.current.value),
         id: uuid(),
       };
-      productsInformations.push(newProduct);
-
-      window.localStorage.setItem(
-        "productsInformations",
-        JSON.stringify(productsInformations)
-      );
+      dispatch(addProduct(newProduct));
     }
   }
 
   function productRegisteringSubmitHandle() {
     dialogOfSuccesRegisterHandleClickOpen();
     wait2SeconsAndGoToTheLastPage();
-    changeLocalStorage();
+    changeProductsInformations();
   }
 
   function ProductsForm() {
@@ -194,48 +199,43 @@ function Main() {
           <li className={styles.productsFormItems}>
             <label htmlFor="productNumberInput">تعداد محصول : </label>
             <Input
-              placeholder="1,2,3,..."
               id="productNumberInput"
               ref={productNumberInputRef}
+              placeholder="1,2,3,..."
+              required
               onChange={productNumberInputHandle}
             />
           </li>
           <li className={styles.productsFormItems}>
             <label htmlFor="productChoosePriceInput">قیمت محصول : </label>
             <Input
-              placeholder="1000"
-              onChange={productPriceInputHandle}
-              ref={productPriceInputRef}
               id="productPriceInputID"
+              ref={productPriceInputRef}
+              placeholder="1000"
+              required
+              onChange={productPriceInputHandle}
             />
           </li>
           <li className={styles.productsFormItems}>
-            <ProductRegisteringDivision />
+            <div className={styles.productRegisteringDivision}>
+              {/* شامل قسمت ثبت اطلاعات محصول در حال فروش،و دکمه ی تایید */}
+              <div
+                className={styles.productRegisteringDivisionText}
+                ref={productRegisteringDivisionTextRef}
+              ></div>
+              <Button
+                id="submitButton"
+                type="submit"
+                variant="contained"
+                color="success"
+                size="large"
+                sx={{ minWidth: "20%", padding: "2%" }}
+              >
+                <ButtenText>تایید</ButtenText>
+              </Button>
+            </div>
           </li>
         </form>
-      </>
-    );
-  }
-
-  function ProductRegisteringDivision() {
-    return (
-      <>
-        <div className={styles.productRegisteringDivision}>
-          <div
-            className={styles.productRegisteringDivisionText}
-            ref={productRegisteringDivisionTextRef}
-          ></div>
-          <Button
-            id="submitButton"
-            type="submit"
-            variant="contained"
-            color="success"
-            size="large"
-            sx={{ minWidth: "20%", padding: "2%" }}
-          >
-            <ButtenText>تایید</ButtenText>
-          </Button>
-        </div>
       </>
     );
   }
