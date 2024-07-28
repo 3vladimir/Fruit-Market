@@ -20,7 +20,7 @@ function Header({ pageTitle }) {
   function toggleTheSoppingCart() {
     setShoppingCartOpen(!shoppingCartOpen);
   }
-
+  
   function ShoppingCart() {
     const productsInformations = useSelector((state) => state.products.value);
     React.useEffect(() => {

@@ -23,6 +23,21 @@ import { ButtenText } from "../../../Components/Form-items/FormItems";
 import findProductFarsiName from "../../../Functions/findProductFarsiName";
 
 function Main() {
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
+  const [dialogOfDemandMoreThanSupply, setDialogOfDemandMoreThanSupply] =
+    React.useState(false);
+
+  const dialogOFDemandMoreThanSupplyHandleClickOpen = () => {
+    setDialogOfDemandMoreThanSupply(true);
+  };
+
+  const dialogOfDemandMoreThanSupplyHandleClose = () => {
+    setDialogOfDemandMoreThanSupply(false);
+  };
+
   function DialogOfDemandMoreThanSupplyComponent() {
     // هرگاه تعداد درخواستی برای محصول بیشتر از موجودی انبار باشد،این قسمت نمایش داده میشود
     return (
@@ -55,6 +70,17 @@ function Main() {
       </>
     );
   }
+
+  const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
+    React.useState(false);
+
+  const dialogOfSuccesRegisterHandleClickOpen = () => {
+    setDialogOfSuccesRegister(true);
+  };
+
+  const dialogOfSuccesRegisterHandleClose = () => {
+    setDialogOfSuccesRegister(false);
+  };
 
   function DialogOfSuccessRegisterComponent() {
     // زمانی که خرید محصول با موفقیت انجام شد،این بخش نمایش داده میشود
@@ -100,32 +126,6 @@ function Main() {
       </>
     );
   }
-
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
-  const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
-    React.useState(false);
-
-  const dialogOfSuccesRegisterHandleClickOpen = () => {
-    setDialogOfSuccesRegister(true);
-  };
-
-  const dialogOfSuccesRegisterHandleClose = () => {
-    setDialogOfSuccesRegister(false);
-  };
-
-  const [dialogOfDemandMoreThanSupply, setDialogOfDemandMoreThanSupply] =
-    React.useState(false);
-
-  const dialogOFDemandMoreThanSupplyHandleClickOpen = () => {
-    setDialogOfDemandMoreThanSupply(true);
-  };
-
-  const dialogOfDemandMoreThanSupplyHandleClose = () => {
-    setDialogOfDemandMoreThanSupply(false);
-  };
 
   const productsInformations = useSelector((state) => state.products.value);
   const dispatch = useDispatch();

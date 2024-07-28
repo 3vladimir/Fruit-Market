@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -10,19 +11,9 @@ import {
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
 import Header from "../../Components/Header/Header";
-import { Button } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import Slide from "@mui/material/Slide";
-import {
-  Input,
-  Select,
-  ButtenText,
-} from "../../Components/Form-items/FormItems";
 import { CheckIcon } from "../../Icons/Icons";
-import findProductFarsiName from "../../Functions/findProductFarsiName";
+import { DialogOfSuccesRegisterComponnent } from "../../Components/Dialoges/SalePageDialoges";
+import ProductsForm from "../../Components/ProductsFormForSalePage/ProductsForm";
 
 function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);
@@ -32,117 +23,27 @@ function Main() {
   const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
     React.useState(false);
 
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
-  function DialogOfSuccesRegisterComponnent() {
-    //زمانی که محصول برای فروش قرار داده میشود،این بخش نمایش داده میشود
-    return (
-      <>
-        <Dialog
-          open={dialogOfSuccesRegister}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={dialogOfSuccesRegisterHandleClose}
-          aria-describedby="alert-dialog-slide-description"
-          sx={{ direction: "ltr" }}
-        >
-          <DialogContent>
-            <DialogContentText
-              id="alert-dialog-slide-description"
-              sx={{ direction: "rtl", textAlign: "center" }}
-            >
-              <CheckIcon />
-              <div className={styles.productRegisteringAlertText}>
-                {productRegisteringTextWrite()} با موفقیت ثبت شده و محصولات شما
-                برای فروش قرار داده شد
-              </div>
-              <div className={styles.productRegisteringAlertMoment}></div>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions></DialogActions>
-        </Dialog>
-      </>
-    );
-  }
-
-  const dialogOfSuccesRegisterHandleClickOpen = () => {
+  function dialogOfSuccesRegisterHandleClickOpen() {
     setDialogOfSuccesRegister(true);
-  };
-
-  const dialogOfSuccesRegisterHandleClose = () => {
-    setDialogOfSuccesRegister(false);
-  };
-
-  function productRegisteringTextWrite() {
-    // اطلاعات مربوط به محصول در حال فروش را آپدیت میکند
-    const productChoosedNumber = productNumberInputRef.current.value || 0;
-    const productChoosedPrice = productPriceInputRef.current.value || 0;
-    const productFarsiName = productsSelectRef.current
-      ? findProductFarsiName(productsSelectRef.current.value)
-      : "موز";
-
-    return `فروش ${productChoosedNumber} 
-      عدد ${productFarsiName}${" "}
-      به قیمت هرعدد ${productChoosedPrice} تومان
-      `;
   }
+
+  function dialogOfSuccesRegisterHandleClose() {
+    setDialogOfSuccesRegister(false);
+  }
+
+  const [productNumber, setProductNumber] = React.useState(0);
+  const [productPrice, setProductPrice] = React.useState(0);
+  const [productFarsiName, setProductFarsiName] = React.useState("موز");
 
   React.useEffect(() => {
-    productRegisteringDivisionTextRef.current.textContent =
-      productRegisteringTextWrite();
-  });
-
-  function productNumberInputHandle() {
-    // مربوط به قسمت تعداد محصول
-    const inputValue = productNumberInputRef.current.value;
-    const isProductChooseNumberInputCorrect = /[1-9]/;
-
-    if (isProductChooseNumberInputCorrect.test(inputValue) && inputValue > 0) {
-      productNumberInputRef.current.classList.remove(
-        styles.productsFormInputsError
-      );
-      productRegisteringDivisionTextRef.current.textContent =
-        productRegisteringTextWrite();
-    } else {
-      productNumberInputRef.current.classList.add(
-        styles.productsFormInputsError
-      );
-      productNumberInputRef.current.value = "";
-    }
-  }
-
-  function productPriceInputHandle() {
-    // مربوط به قسمت قیمت محصول
-    const inputValue = productPriceInputRef.current.value;
-    const isProductChooseNumberInputCorrect = /[1-9]/;
-
-    if (isProductChooseNumberInputCorrect.test(inputValue) && inputValue > 0) {
-      productPriceInputRef.current.classList.remove(
-        styles.productsFormInputsError
-      );
-      productRegisteringDivisionTextRef.current.textContent =
-        productRegisteringTextWrite();
-    } else {
-      productPriceInputRef.current.classList.add(
-        styles.productsFormInputsError
-      );
-      productPriceInputRef.current.value = "";
-    }
-  }
-
-  function handleSelectChange() {
-    // مربوط به قسمت نوع محصول
-    productRegisteringDivisionTextRef.current.textContent =
-      productRegisteringTextWrite();
-  }
+    productRegisteringDivisionTextRef.current.textContent = `فروش ${productNumber} عدد ${productFarsiName} به قیمت هر عدد ${productPrice} تومان`;
+  }, [productNumber, productPrice, productFarsiName]);
 
   function wait2SeconsAndGoToTheLastPage() {
     // زمانی که فروش محصول تایید شد،به صفحه اصلی سایت برمیگردد
     setTimeout(function () {
       location.assign("/");
-    }, 2000);
+    }, 2200);
   }
 
   const productsInformations = useSelector((state) => state.products.value);
@@ -155,6 +56,8 @@ function Main() {
       if (item.name === productsSelectRef.current.value) {
         if (item.price === parseInt(productPriceInputRef.current.value)) {
           productWasAlreadyExist = true;
+          // یعنی محصول در با قیمت مشابه در لیست وجود دارد
+          // در نتیجه فقط موجودی آن را افزایش بده
           const productNewNumber =
             productsInformations[index].number +
             parseInt(productNumberInputRef.current.value);
@@ -164,6 +67,7 @@ function Main() {
       }
     });
     if (!productWasAlreadyExist) {
+      // یعنی محصول با قیمت مشابه در لیست موجود نیست و باید آیتم جدیدی بسازد
       const newProduct = {
         name: productsSelectRef.current.value,
         price: parseInt(productPriceInputRef.current.value),
@@ -180,75 +84,36 @@ function Main() {
     changeProductsInformations();
   }
 
-  function ProductsForm() {
-    function handleSubmit(event) {
-      event.preventDefault();
-      productRegisteringSubmitHandle();
-    }
-    return (
-      <>
-        <form onSubmit={handleSubmit}>
-          <li className={styles.productsFormItems}>
-            محصول مورد نظر :{" "}
-            <Select ref={productsSelectRef} onChange={handleSelectChange}>
-              <option value="banana">موز</option>
-              <option value="orange">پرتقال</option>
-              <option value="apple">سیب</option>
-            </Select>
-          </li>
-          <li className={styles.productsFormItems}>
-            <label htmlFor="productNumberInput">تعداد محصول : </label>
-            <Input
-              id="productNumberInput"
-              ref={productNumberInputRef}
-              placeholder="1,2,3,..."
-              required
-              onChange={productNumberInputHandle}
-            />
-          </li>
-          <li className={styles.productsFormItems}>
-            <label htmlFor="productChoosePriceInput">قیمت محصول : </label>
-            <Input
-              id="productPriceInputID"
-              ref={productPriceInputRef}
-              placeholder="1000"
-              required
-              onChange={productPriceInputHandle}
-            />
-          </li>
-          <li className={styles.productsFormItems}>
-            <div className={styles.productRegisteringDivision}>
-              {/* شامل قسمت ثبت اطلاعات محصول در حال فروش،و دکمه ی تایید */}
-              <div
-                className={styles.productRegisteringDivisionText}
-                ref={productRegisteringDivisionTextRef}
-              ></div>
-              <Button
-                id="submitButton"
-                type="submit"
-                variant="contained"
-                color="success"
-                size="large"
-                sx={{ minWidth: "20%", padding: "2%" }}
-              >
-                <ButtenText>تایید</ButtenText>
-              </Button>
-            </div>
-          </li>
-        </form>
-      </>
-    );
-  }
-
   return (
     <>
       <main>
         <div className={styles.outerContainer}>
           <div className={styles.InnerContainer}>
-            <ProductsForm />
+            <ProductsForm
+              setProductNumber={setProductNumber}
+              setProductPrice={setProductPrice}
+              setProductFarsiName={setProductFarsiName}
+              productRegisteringSubmitHandle={productRegisteringSubmitHandle}
+              productsSelectRef={productsSelectRef}
+              productNumberInputRef={productNumberInputRef}
+              productPriceInputRef={productPriceInputRef}
+              productRegisteringDivisionTextRef={
+                productRegisteringDivisionTextRef
+              }
+            />
           </div>
         </div>
-        <DialogOfSuccesRegisterComponnent />
+        <DialogOfSuccesRegisterComponnent
+          dialogOfSuccesRegister={dialogOfSuccesRegister}
+          dialogOfSuccesRegisterHandleClose={dialogOfSuccesRegisterHandleClose}
+        >
+          <CheckIcon />
+          <div className={styles.productRegisteringAlertText}>
+            {`${productNumber} عدد ${productFarsiName} به قیمت هر عدد ${productPrice}
+             تومان برای فروش قرار داده شد`}
+          </div>
+          <div className={styles.productRegisteringAlertMoment}></div>
+        </DialogOfSuccesRegisterComponnent>
       </main>
     </>
   );

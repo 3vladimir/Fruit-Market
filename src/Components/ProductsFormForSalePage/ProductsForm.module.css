@@ -1,0 +1,51 @@
+.productsFormItems {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.productsFormInputsError {
+  outline: 2px solid red;
+}
+
+.productRegisteringDivision {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.productRegisteringDivisionText {
+  font-weight: 900;
+}
+
+@media screen and (max-width: 1000px) {
+  .productsFormItems {
+    width: 50%;
+    margin: 40px 0;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .productsFormItems {
+    margin: 30px 0;
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .productsFormItems {
+    margin: 20px 0;
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .productsFormItems {
+    margin: 10px 0;
+    font-size: 0.3em;
+  }
+}
