@@ -1,0 +1,23 @@
+@media screen and (max-width: 1000px) {
+  .dialogOfDemandMoreThanSupplyText {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .dialogOfDemandMoreThanSupplyText {
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dialogOfDemandMoreThanSupplyText {
+    font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dialogOfDemandMoreThanSupplyText {
+    font-size: 0.4em;
+  }
+}

@@ -1,0 +1,144 @@
+
+.formListItems {
+  margin-bottom: 30px;
+}
+
+.productNumberLabeAndInput {
+  display: flex;
+  align-items: baseline;
+}
+
+.productNumberInputAndAlert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productNumberInput {
+  width: 80%;
+  padding: 1em;
+  direction: ltr;
+}
+
+.productNumberInputError {
+  outline: 2px solid red;
+}
+
+.alertOfInvalidInputs {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #d32f2f;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+.alertOfInvalidInputsIcon {
+  margin-right: 5px;
+  font-size: 1.5em;
+}
+
+.productRegisteringDivision {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  width: 25%;
+  align-items: center;
+}
+
+.productRegisteringDivisionText {
+  font-weight: 900;
+}
+
+@media screen and (max-width: 1000px) {
+  .formListItems {
+    font-size: 0.8em;
+    margin-bottom: 25px;
+  }
+
+  .productNumberInput {
+    padding: 0.8em;
+    font-size: 0.8em;
+  }
+
+  .alertOfInvalidInputs {
+    font-size: 0.8em;
+    padding: 6px 14px;
+  }
+
+  .productRegisteringDivision {
+    margin-top: 40px;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .formListItems {
+    font-size: 0.7em;
+    margin-bottom: 20px;
+  }
+
+  .productNumberInput {
+    padding: 0.7em;
+    font-size: 0.7em;
+  }
+
+  .alertOfInvalidInputs {
+    font-size: 0.7em;
+    padding: 5px 12px;
+  }
+
+  .productRegisteringDivision {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .formListItems {
+    font-size: 0.6em;
+    margin-bottom: 15px;
+  }
+
+  .productNumberInput {
+    padding: 0.6em;
+    font-size: 0.6em;
+  }
+
+  .alertOfInvalidInputs {
+    font-size: 0.6em;
+    padding: 4px 10px;
+  }
+
+  .productRegisteringDivision {
+    margin-top: 25px;
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .formListItems {
+    font-size: 0.5em;
+  }
+
+  .productRegisteringDivision {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .formListItems {
+    font-size: 0.4em;
+    margin-bottom: 10px;
+  }
+
+  .alertOfInvalidInputs {
+    font-size: 0.4em;
+    padding: 3px 8px;
+  }
+
+  .productRegisteringDivision {
+    margin-top: 20px;
+  }
+}

@@ -10,10 +10,10 @@ import {
 } from "../../Redux/actions/productActions";
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
-import Header from "../../Components/Header/Header";
+import {Header} from "../../Components";
 import { CheckIcon } from "../../Icons/Icons";
-import { DialogOfSuccesRegisterComponnent } from "../../Components/Dialoges/SalePageDialoges";
-import ProductsForm from "../../Components/ProductsFormForSalePage/ProductsForm";
+import { DialogOfSuccesRegisterComponnent } from "../../Components";
+import {ProductsFormSalePage} from "../../Components";
 
 function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);
@@ -78,7 +78,8 @@ function Main() {
     }
   }
 
-  function productRegisteringSubmitHandle() {
+  function handleSubmit(event) {
+    event.preventDefault();
     dialogOfSuccesRegisterHandleClickOpen();
     wait2SeconsAndGoToTheLastPage();
     changeProductsInformations();
@@ -89,11 +90,11 @@ function Main() {
       <main>
         <div className={styles.outerContainer}>
           <div className={styles.InnerContainer}>
-            <ProductsForm
+            <ProductsFormSalePage
               setProductNumber={setProductNumber}
               setProductPrice={setProductPrice}
               setProductFarsiName={setProductFarsiName}
-              productRegisteringSubmitHandle={productRegisteringSubmitHandle}
+              handleSubmit={handleSubmit}
               productsSelectRef={productsSelectRef}
               productNumberInputRef={productNumberInputRef}
               productPriceInputRef={productPriceInputRef}

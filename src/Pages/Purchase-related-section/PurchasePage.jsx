@@ -5,10 +5,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import styles from "./PurchasePage.module.css";
-import Header from "../../Components/Header/Header";
+import {Header} from "../../Components";
 import { Link } from "react-router-dom";
 import { Button, useMediaQuery } from "@mui/material";
-import { ButtenText } from "../../Components/Form-items/FormItems";
+import { ButtenText } from "../../Components";
 import findProductFarsiName from "../../Functions/findProductFarsiName";
 
 function Main() {

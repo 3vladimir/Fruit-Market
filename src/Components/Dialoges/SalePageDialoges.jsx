@@ -7,7 +7,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
-import { CheckIcon } from "../../Icons/Icons";
 
 export function DialogOfSuccesRegisterComponnent({
   dialogOfSuccesRegister,
@@ -34,13 +33,7 @@ export function DialogOfSuccesRegisterComponnent({
             id="alert-dialog-slide-description"
             sx={{ direction: "rtl", textAlign: "center" }}
           >
-            {/* <CheckIcon /> */}
             {children}
-            {/* <div className={styles.productRegisteringAlertText}>
-                {productRegisteringTextWrite()} با موفقیت ثبت شده و محصولات شما
-                برای فروش قرار داده شد
-              </div>
-              <div className={styles.productRegisteringAlertMoment}></div> */}
           </DialogContentText>
         </DialogContent>
         <DialogActions></DialogActions>

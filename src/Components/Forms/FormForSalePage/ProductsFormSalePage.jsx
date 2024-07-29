@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Button } from "@mui/material";
-import { Input, Select, ButtenText } from "../Form-items/FormItems";
+import { Input, Select, ButtenText } from "../../";
 import styles from "./ProductsForm.module.css";
-import findProductFarsiName from "../../Functions/findProductFarsiName.js";
+import findProductFarsiName from "../../../Functions/findProductFarsiName.js";
 
 function ProductsForm({
   setProductNumber,
   setProductPrice,
   setProductFarsiName,
-  productRegisteringSubmitHandle,
+  handleSubmit,
   productRegisteringDivisionTextRef,
   productsSelectRef,
   productNumberInputRef,
@@ -25,13 +25,9 @@ function ProductsForm({
         inputValue > 0
       ) {
         setProductNumber(parseInt(inputValue));
-        productNumberInputRef.current.classList.remove(
-          styles.productsFormInputsError
-        );
+        event.target.classList.remove(styles.productsFormInputsError);
       } else {
-        productNumberInputRef.current.classList.add(
-          styles.productsFormInputsError
-        );
+        event.target.classList.add(styles.productsFormInputsError);
         event.target.value = "";
       }
     }
@@ -48,13 +44,9 @@ function ProductsForm({
         inputValue > 0
       ) {
         setProductPrice(parseInt(event.target.value));
-        productPriceInputRef.current.classList.remove(
-          styles.productsFormInputsError
-        );
+        event.target.classList.remove(styles.productsFormInputsError);
       } else {
-        productPriceInputRef.current.classList.add(
-          styles.productsFormInputsError
-        );
+        event.target.classList.add(styles.productsFormInputsError);
         event.target.value = "";
       }
     }
@@ -67,10 +59,10 @@ function ProductsForm({
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    productRegisteringSubmitHandle();
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   productRegisteringSubmitHandle();
+  // }
   return (
     <>
       <form onSubmit={handleSubmit}>
