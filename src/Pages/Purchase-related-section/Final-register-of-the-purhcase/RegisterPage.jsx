@@ -17,6 +17,7 @@ import {
 } from "../../../Components";
 import { ProductsFormRegisterPage } from "../../../Components";
 import findProductFarsiName from "../../../Functions/findProductFarsiName";
+import { Title } from "../../../Components";
 
 function Main() {
   const productNumberInputRef = React.useRef(0);
@@ -173,6 +174,9 @@ function Main() {
 function App() {
   return (
     <>
+    <Title>
+      ثبت نهایی خرید
+    </Title>
       <Header pageTitle="ثبت نهایی خرید" />
       <Main />
     </>

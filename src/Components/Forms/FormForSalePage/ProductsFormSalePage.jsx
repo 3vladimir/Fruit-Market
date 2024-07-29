@@ -59,10 +59,6 @@ function ProductsForm({
     }
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   productRegisteringSubmitHandle();
-  // }
   return (
     <>
       <form onSubmit={handleSubmit}>

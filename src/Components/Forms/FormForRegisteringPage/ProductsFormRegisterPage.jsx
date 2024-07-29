@@ -21,8 +21,7 @@ function ProductsForm({
   function productNumberInputHandle(event) {
     // مربوط به قسمت تعداد محصول
     if (event) {
-      const inputValue = parseInt(event.target.value);
-      setProductNumber(inputValue || 0);
+      const inputValue = event.target.value;
 
       setAlertOfInvalidInputs(true);
       const isProductChooseNumberInputCorrect = /[1-9]/;
@@ -30,6 +29,7 @@ function ProductsForm({
         isProductChooseNumberInputCorrect.test(inputValue) &&
         inputValue > 0
       ) {
+        setProductNumber(parseInt(inputValue) || 0);
         setAlertOfInvalidInputs(false);
         setSubmitButtonOn(true);
         event.target.classList.remove(styles.productNumberInputError);

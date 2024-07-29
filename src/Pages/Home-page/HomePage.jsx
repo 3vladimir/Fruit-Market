@@ -4,6 +4,7 @@ import * as React from "react";
 import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import Slide from "@mui/material/Slide";
+import { Title } from "../../Components";
 
 function Header() {
   const [titleChecked, setTitleChecked] = React.useState(false);
@@ -66,6 +67,7 @@ function Main() {
 function App() {
   return (
     <>
+      <Title>صفحه اصلی</Title>
       <Header />
       <Main />
     </>

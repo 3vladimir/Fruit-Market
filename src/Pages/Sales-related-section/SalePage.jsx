@@ -10,10 +10,11 @@ import {
 } from "../../Redux/actions/productActions";
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
-import {Header} from "../../Components";
+import { Header } from "../../Components";
 import { CheckIcon } from "../../Icons/Icons";
 import { DialogOfSuccesRegisterComponnent } from "../../Components";
-import {ProductsFormSalePage} from "../../Components";
+import { ProductsFormSalePage } from "../../Components";
+import { Title } from "../../Components";
 
 function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);
@@ -123,6 +124,7 @@ function Main() {
 function App() {
   return (
     <>
+      <Title>بخش فروش</Title>
       <Header pageTitle="بخش فروش" />
       <Main />
     </>

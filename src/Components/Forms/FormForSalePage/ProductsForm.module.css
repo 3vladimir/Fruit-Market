@@ -7,7 +7,8 @@
 }
 
 .productsFormInputsError {
-  outline: 2px solid red;
+  outline: 0;
+  border: 2px solid red;
 }
 
 .productRegisteringDivision {
@@ -23,29 +24,41 @@
 
 @media screen and (max-width: 1000px) {
   .productsFormItems {
-    width: 50%;
+    width: 60%;
     margin: 40px 0;
-    font-size: 0.8em;
   }
 }
 
 @media screen and (max-width: 800px) {
   .productsFormItems {
     margin: 30px 0;
-    font-size: 0.7em;
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .productsFormItems {
+    width: 70%;
   }
 }
 
 @media screen and (max-width: 600px) {
   .productsFormItems {
     margin: 20px 0;
-    font-size: 0.5em;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .productsFormItems {
+    width: 85%;
+    margin: 15px 0;
+    font-size: 0.7em;
   }
 }
 
 @media screen and (max-width: 400px) {
   .productsFormItems {
-    margin: 10px 0;
-    font-size: 0.3em;
+    font-size: 0.6em;
   }
 }

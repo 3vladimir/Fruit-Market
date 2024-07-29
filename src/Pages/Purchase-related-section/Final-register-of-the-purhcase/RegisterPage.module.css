@@ -15,6 +15,10 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .mainInnerContainer {
+    margin: 80px auto;
+  }
+
   .productRegisteringAlertText {
     font-size: 1.2em;
   }
@@ -26,6 +30,9 @@
 }
 
 @media screen and (max-width: 800px) {
+  .mainInnerContainer {
+    margin: 60px auto;
+  }
   .productRegisteringAlertText {
     font-size: 1em;
   }

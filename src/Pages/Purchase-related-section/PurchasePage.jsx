@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { Button, useMediaQuery } from "@mui/material";
 import { ButtenText } from "../../Components";
 import findProductFarsiName from "../../Functions/findProductFarsiName";
+import { Title } from "../../Components";
 
 function Main() {
   const productsInformations = useSelector((state) => state.products.value);
@@ -106,6 +107,9 @@ function Main() {
 function App() {
   return (
     <>
+    <Title>
+      بخش خرید
+    </Title>
       <Header pageTitle="بخش خرید" />
       <Main />
     </>
