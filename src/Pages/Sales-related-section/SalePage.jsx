@@ -11,14 +11,15 @@ import {
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
 import { Header } from "../../Components";
-import { CheckIcon } from "../../Icons/Icons";
 import { DialogOfSuccesRegisterComponnent } from "../../Components";
 import { ProductsFormSalePage } from "../../Components";
 import { Title } from "../../Components";
 
 function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);
-  const productsSelectRef = React.useRef(0);
+  // این مربوط به قسمتی است که اطلاعات نهایی محصول در حال فروش را به کاربر اطلاع دهد
+  // اطلاعاتی که هنوز تایید نشده اند
+  const productTypeRef = React.useRef(0);
   const productNumberInputRef = React.useRef(0);
   const productPriceInputRef = React.useRef(0);
   const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
@@ -27,7 +28,6 @@ function Main() {
   function dialogOfSuccesRegisterHandleClickOpen() {
     setDialogOfSuccesRegister(true);
   }
-
   function dialogOfSuccesRegisterHandleClose() {
     setDialogOfSuccesRegister(false);
   }
@@ -40,7 +40,7 @@ function Main() {
     productRegisteringDivisionTextRef.current.textContent = `فروش ${productNumber} عدد ${productFarsiName} به قیمت هر عدد ${productPrice} تومان`;
   }, [productNumber, productPrice, productFarsiName]);
 
-  function wait2SeconsAndGoToTheLastPage() {
+  function wait2SeconsAndGoToTheHomePage() {
     // زمانی که فروش محصول تایید شد،به صفحه اصلی سایت برمیگردد
     setTimeout(function () {
       location.assign("/");
@@ -54,10 +54,10 @@ function Main() {
     // محصولی که برای فروش قرار داده شده را به لیست محصولات اضافه کن
     let productWasAlreadyExist = false;
     productsInformations.forEach((item, index) => {
-      if (item.name === productsSelectRef.current.value) {
+      if (item.name === productTypeRef.current.value) {
         if (item.price === parseInt(productPriceInputRef.current.value)) {
           productWasAlreadyExist = true;
-          // یعنی محصول در با قیمت مشابه در لیست وجود دارد
+          // یعنی محصول با قیمت مشابه در لیست وجود دارد
           // در نتیجه فقط موجودی آن را افزایش بده
           const productNewNumber =
             productsInformations[index].number +
@@ -70,7 +70,7 @@ function Main() {
     if (!productWasAlreadyExist) {
       // یعنی محصول با قیمت مشابه در لیست موجود نیست و باید آیتم جدیدی بسازد
       const newProduct = {
-        name: productsSelectRef.current.value,
+        name: productTypeRef.current.value,
         price: parseInt(productPriceInputRef.current.value),
         number: parseInt(productNumberInputRef.current.value),
         id: uuid(),
@@ -80,10 +80,14 @@ function Main() {
   }
 
   function handleSubmit(event) {
+    // مربوط به تایید اطلاعات فرم.زمانی که انجام شد،سه عملیات زیر اجرا میشوند
     event.preventDefault();
     dialogOfSuccesRegisterHandleClickOpen();
-    wait2SeconsAndGoToTheLastPage();
+    // پنجره ای جهت تایید کردن عملیات باز میشود
     changeProductsInformations();
+    // محصول وارد لیست میشود
+    wait2SeconsAndGoToTheHomePage();
+    // پس از 2 ثانیه به صفحه ی اصلی برمیگردد
   }
 
   return (
@@ -92,11 +96,12 @@ function Main() {
         <div className={styles.outerContainer}>
           <div className={styles.InnerContainer}>
             <ProductsFormSalePage
+              // کل ورودی های فرم و دکمه تایید
               setProductNumber={setProductNumber}
               setProductPrice={setProductPrice}
               setProductFarsiName={setProductFarsiName}
               handleSubmit={handleSubmit}
-              productsSelectRef={productsSelectRef}
+              productTypeRef={productTypeRef}
               productNumberInputRef={productNumberInputRef}
               productPriceInputRef={productPriceInputRef}
               productRegisteringDivisionTextRef={
@@ -106,16 +111,13 @@ function Main() {
           </div>
         </div>
         <DialogOfSuccesRegisterComponnent
+          // زمانی که عملیات به پایان رسید و کالا برای فروش گذاشته شد،این قسمت نمایش داده میشود
+          productNumber={productNumber}
+          productFarsiName={productFarsiName}
+          productPrice={productPrice}
           dialogOfSuccesRegister={dialogOfSuccesRegister}
           dialogOfSuccesRegisterHandleClose={dialogOfSuccesRegisterHandleClose}
-        >
-          <CheckIcon />
-          <div className={styles.productRegisteringAlertText}>
-            {`${productNumber} عدد ${productFarsiName} به قیمت هر عدد ${productPrice}
-             تومان برای فروش قرار داده شد`}
-          </div>
-          <div className={styles.productRegisteringAlertMoment}></div>
-        </DialogOfSuccesRegisterComponnent>
+        ></DialogOfSuccesRegisterComponnent>
       </main>
     </>
   );

@@ -1,3 +1,8 @@
+.InnerContainer {
+  width: 90%;
+  margin: 100px auto;
+}
+
 .prodcutNoExistText {
   margin-top: 5px;
   color: red;
@@ -78,6 +83,10 @@
 }
 
 @media screen and (max-width: 500px) {
+  .InnerContainer {
+    margin: 70px auto;
+  }
+
   .productsItems {
     width: 80%;
     margin-top: 5px;
@@ -85,6 +94,9 @@
 }
 
 @media screen and (max-width: 400px) {
+  .InnerContainer {
+    margin: 60px auto;
+  }
   .productsItems {
     font-size: 0.6em;
     margin-top: 4px;

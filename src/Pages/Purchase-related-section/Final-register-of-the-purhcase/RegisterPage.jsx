@@ -24,6 +24,7 @@ function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);
   const [dialogOfDemandMoreThanSupply, setDialogOfDemandMoreThanSupply] =
     React.useState(false);
+  // مربوط به زمانی که تعداد محصول درخواستی کاربر بیشتر از موجودی باشد
 
   const [productNumber, setProductNumber] = React.useState(0);
 
@@ -37,6 +38,7 @@ function Main() {
 
   const [dialogOfSuccesRegister, setDialogOfSuccesRegister] =
     React.useState(false);
+  // مربوط به باز شدن پنجره ی تایید عملیات
 
   const dialogOfSuccesRegisterHandleClickOpen = () => {
     setDialogOfSuccesRegister(true);
@@ -75,14 +77,13 @@ function Main() {
       // یعنی تعداد درخواستی بیشتر از موجودی است
       dialogOFDemandMoreThanSupplyHandleClickOpen();
     } else {
-      function showDialogOfSuccesRegister() {
-        dialogOfSuccesRegisterHandleClickOpen();
-        wait3SeconsAndGoToTheLastPage();
-      }
-      function changeShoppingCartLocalStorage() {
+      // تعداد درخواستی کاربر در انبار موجود است.پس عملیات خرید را انجام داده
+      // و لیست محصولات نیز سبد خرید را آپدیت میکنیم
+      function changeShoppingCartInformations() {
         let productWasAlreadyExist = false;
         shoppingCartInformations.forEach((item, index) => {
           if (item.id === productID) {
+            // یعنی محصول از قبل در سبد خرید موجود است.پس صرفا باید مقدارش را افزایش دهیم
             productWasAlreadyExist = true;
             const productNewNumber =
               shoppingCartInformations[index].number +
@@ -95,6 +96,7 @@ function Main() {
           }
         });
         if (!productWasAlreadyExist) {
+          // این یعنی محصول در سبد خرید نبوده و در نتیجه باید آیتم جدیدی در سبد خرید بسازیم
           const newShoppingProduct = {
             name: product.name,
             price: product.price,
@@ -117,14 +119,17 @@ function Main() {
           productsInformations[productIndex].number - productNumberInputValue;
 
         if (productNewNumber === 0) {
+          // یعنی تمامی موجودی آن محصول خریداری شده و در نتیجه باید از لیست حذف شود
           dispatch(removeProduct(productID));
         } else {
+          // یعنی موجودی محصول تمام نشده و صرفا باید مقدار جدیدی به آن بدهیم
           dispatch(decreaseProductNumber(productID, productNewNumber));
         }
       }
       changeProductInformations();
-      showDialogOfSuccesRegister();
-      changeShoppingCartLocalStorage();
+      dialogOfSuccesRegisterHandleClickOpen();
+      wait3SeconsAndGoToTheLastPage();
+      changeShoppingCartInformations();
     }
   }
 
@@ -148,12 +153,15 @@ function Main() {
           />
 
           <DialogOfDemandMoreThanSupplyComponent
+            // زمانی که تعداد محصول درخواستی کاربر یبشتر از موجودی باشد
+            // این پنجره به نمایش در میاید
             dialogOfDemandMoreThanSupply={dialogOfDemandMoreThanSupply}
             dialogOfDemandMoreThanSupplyHandleClose={
               dialogOfDemandMoreThanSupplyHandleClose
             }
           />
           <DialogOfSuccessRegisterComponent
+            // پس از اتمام عملیات خرید،این پنجره جهت تایید به نمایش در میاید
             dialogOfSuccesRegister={dialogOfSuccesRegister}
             dialogOfSuccesRegisterHandleClose={
               dialogOfSuccesRegisterHandleClose
@@ -174,9 +182,7 @@ function Main() {
 function App() {
   return (
     <>
-    <Title>
-      ثبت نهایی خرید
-    </Title>
+      <Title>ثبت نهایی خرید</Title>
       <Header pageTitle="ثبت نهایی خرید" />
       <Main />
     </>

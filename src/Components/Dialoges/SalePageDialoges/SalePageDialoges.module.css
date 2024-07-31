@@ -1,0 +1,22 @@
+.productRegisteringAlertText {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 1000px) {
+  .productRegisteringAlertText {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .productRegisteringAlertText {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .productRegisteringAlertText {
+    font-size: 0.8em;
+  }
+}

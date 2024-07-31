@@ -5,7 +5,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import styles from "./PurchasePage.module.css";
-import {Header} from "../../Components";
+import { Header } from "../../Components";
 import { Link } from "react-router-dom";
 import { Button, useMediaQuery } from "@mui/material";
 import { ButtenText } from "../../Components";
@@ -19,12 +19,13 @@ function Main() {
     window.localStorage.getItem("productName") || "banana"
   );
   const [productErrorOFRunOut, setProductErrorOFRunOut] = React.useState(false);
-  const productsSelectDivisionRef = React.useRef(null);
+  // زمانی که از یک محصول هیچ موجودی در انبار نباشد
+  const productTypeSelectRef = React.useRef(0);
 
   const screenWidthIsLessThan600px = useMediaQuery("(max-width: 600px)");
 
   React.useEffect(() => {
-    productsSelectDivisionRef.current.value = productName;
+    productTypeSelectRef.current.value = productName;
     window.localStorage.setItem("productName", productName);
   }, [productName]);
 
@@ -79,15 +80,9 @@ function Main() {
   return (
     <>
       <main className={styles.main}>
-        <div
-          className={styles.BuyMainInnerContainer}
-          style={{
-            width: "90%",
-            margin: "100px auto",
-          }}
-        >
+        <div className={styles.InnerContainer}>
           <select
-            ref={productsSelectDivisionRef}
+            ref={productTypeSelectRef}
             onChange={handleSelectValue}
             className={styles.select}
           >
@@ -107,9 +102,7 @@ function Main() {
 function App() {
   return (
     <>
-    <Title>
-      بخش خرید
-    </Title>
+      <Title>بخش خرید</Title>
       <Header pageTitle="بخش خرید" />
       <Main />
     </>
