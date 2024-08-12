@@ -9,15 +9,15 @@ import {
   decreaseProductNumber,
 } from "../../../Redux/actions/productActions";
 import styles from "./RegisterPage.module.css";
-import { Header } from "../../../Components";
 import { CheckIcon } from "../../../Icons/Icons";
+import findProductFarsiName from "../../../lib/findProductFarsiName";
 import {
+  Header,
   DialogOfDemandMoreThanSupplyComponent,
   DialogOfSuccessRegisterComponent,
+  ProductsFormRegisterPage,
+  Title,
 } from "../../../Components";
-import { ProductsFormRegisterPage } from "../../../Components";
-import findProductFarsiName from "../../../Functions/findProductFarsiName";
-import { Title } from "../../../Components";
 
 function Main() {
   const productNumberInputRef = React.useRef(0);

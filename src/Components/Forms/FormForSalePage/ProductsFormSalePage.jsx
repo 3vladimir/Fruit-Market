@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@mui/material";
 import { Input, Select, ButtenText } from "../../";
 import styles from "./ProductsForm.module.css";
-import findProductFarsiName from "../../../Functions/findProductFarsiName.js";
+import findProductFarsiName from "../../../lib/findProductFarsiName";
 
 function ProductsForm({
   setProductNumber,

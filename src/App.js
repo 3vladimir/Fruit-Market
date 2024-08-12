@@ -2,25 +2,25 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import HomePage from "./Pages/Home-page/HomePage";
-import SalePage from "././Pages/Sales-related-section/SalePage";
-import PurchasePage from "./Pages/Purchase-related-section/PurchasePage";
-import RegisterPage from "./Pages/Purchase-related-section/Final-register-of-the-purhcase/RegisterPage";
+import {
+  homePageAddress,
+  slaePageAddress,
+  purchasePageAddress,
+  registerPageAddress,
+} from "./Routes/Routes";
+import { HomePage, SalePage, PurchasePage, RegisterPage } from "./Pages";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<HomePage></HomePage>}></Route>
-          <Route path="sale-page" element={<SalePage></SalePage>}></Route>
+          <Route exact path={homePageAddress} element={<HomePage />} />
+          <Route path={slaePageAddress} element={<SalePage />} />
+          <Route path={purchasePageAddress} element={<PurchasePage />} />
           <Route
-            path="purchase-page"
-            element={<PurchasePage></PurchasePage>}
-          ></Route>
-          <Route
-            path="Purchase-page/Register-page"
-            element={<RegisterPage></RegisterPage>}
-          ></Route>
+            path={`${purchasePageAddress}/${registerPageAddress}`}
+            element={<RegisterPage />}
+          />
         </Routes>
       </BrowserRouter>
     </>

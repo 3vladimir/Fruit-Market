@@ -1,11 +1,11 @@
 @font-face {
   font-family: IRANsans;
-  src: url(./fonts/IRANsans.ttf);
+  src: url(../public/fonts/IRANsans.ttf);
 }
 
 @font-face {
   font-family: Titr;
-  src: url(./fonts/B\ Titr\ Bold_0.ttf);
+  src: url(../public/fonts/B\ Titr\ Bold_0.ttf);
 }
 
 * {

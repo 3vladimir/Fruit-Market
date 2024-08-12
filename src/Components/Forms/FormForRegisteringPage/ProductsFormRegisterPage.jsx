@@ -4,7 +4,7 @@ import styles from "./ProductsForm.module.css";
 import { Button } from "@mui/material";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { ButtenText } from "../../";
-import findProductFarsiName from "../../../Functions/findProductFarsiName";
+import findProductFarsiName from "../../../lib/findProductFarsiName";
 
 function ProductsForm({
   handleSubmit,

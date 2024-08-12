@@ -5,6 +5,7 @@ import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
 import Slide from "@mui/material/Slide";
 import { Title } from "../../Components";
+import { slaePageAddress, purchasePageAddress } from "../../Routes/Routes";
 
 function Header() {
   const [titleChecked, setTitleChecked] = React.useState(false);
@@ -46,13 +47,13 @@ function Main() {
       <main>
         <div className={styles.mainOuterContainer}>
           <div className={styles.mainInnerContainer}>
-            <Link to={"sale-page"}>
+            <Link to={slaePageAddress}>
               <div className={`${styles.boxes} ${styles.purchaseBox}`}>
                 بخش فروش
               </div>
             </Link>
 
-            <Link to={"purchase-page"}>
+            <Link to={purchasePageAddress}>
               <div className={`${styles.boxes} ${styles.saleBox}`}>
                 بخش خرید
               </div>

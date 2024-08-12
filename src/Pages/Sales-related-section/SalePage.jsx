@@ -10,10 +10,12 @@ import {
 } from "../../Redux/actions/productActions";
 import styles from "./SalePage.module.css";
 import { v4 as uuid } from "uuid";
-import { Header } from "../../Components";
-import { DialogOfSuccesRegisterComponnent } from "../../Components";
-import { ProductsFormSalePage } from "../../Components";
-import { Title } from "../../Components";
+import {
+  Header,
+  DialogOfSuccesRegisterComponnent,
+  ProductsFormSalePage,
+  Title,
+} from "../../Components";
 
 function Main() {
   const productRegisteringDivisionTextRef = React.useRef(0);

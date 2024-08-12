@@ -5,12 +5,11 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import styles from "./PurchasePage.module.css";
-import { Header } from "../../Components";
 import { Link } from "react-router-dom";
 import { Button, useMediaQuery } from "@mui/material";
-import { ButtenText } from "../../Components";
-import findProductFarsiName from "../../Functions/findProductFarsiName";
-import { Title } from "../../Components";
+import { Header, Title, ButtenText } from "../../Components";
+import findProductFarsiName from "../../lib/findProductFarsiName";
+import {registerPageAddress} from '../../Routes/Routes'
 
 function Main() {
   const productsInformations = useSelector((state) => state.products.value);
@@ -56,7 +55,7 @@ function Main() {
                       item.name
                     )} با قیمت هر عدد ${item.price} تومان موجود است`}
                   </div>
-                  <Link to={`/Purchase-page/Register-page#${item.id}`}>
+                  <Link to={`${registerPageAddress}#${item.id}`}>
                     <Button
                       id="button"
                       variant="contained"

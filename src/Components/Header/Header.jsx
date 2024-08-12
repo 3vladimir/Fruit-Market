@@ -5,9 +5,9 @@ import * as React from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import {ShoppingCart} from "../";
+import { FaShoppingCart, FaHome } from "react-icons/fa";
+import { ShoppingCart } from "../";
+import { homePageAddress } from "../../Routes/Routes";
 
 function Header({ pageTitle }) {
   const [shoppingCartOpen, setShoppingCartOpen] = React.useState(false);
@@ -25,7 +25,7 @@ function Header({ pageTitle }) {
             <nav>
               <div className={styles.headerNavItemsContainer}>
                 <li className={styles.headerNavItems}>
-                  <Link to={"/"}>
+                  <Link to={homePageAddress}>
                     <Button
                       id="homeButton"
                       sx={{ color: "black", minWidth: "1em" }}

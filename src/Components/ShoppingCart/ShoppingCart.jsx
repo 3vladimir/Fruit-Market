@@ -6,7 +6,7 @@ import {
 } from "../../Redux/actions/productActions";
 import { Button } from "@mui/material";
 import styles from "./shoppingCart.module.css";
-import findProductFarsiName from "../../Functions/findProductFarsiName";
+import findProductFarsiName from "../../lib/findProductFarsiName";
 
 function ShoppingCart({ shoppingCartOpen }) {
   const productsInformations = useSelector((state) => state.products.value);
